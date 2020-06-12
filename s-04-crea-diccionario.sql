@@ -9,6 +9,6 @@ connect sys/systemproy as sysdba
 @?/rdbms/admin/catalog.sql
 @?/rdbms/admin/catproc.sql
 @?/rdbms/admin/utlrp.sql
-connect system/system2
+connect system/systemproy
 @?/sqlplus/admin/pupbld.sql
 disconnect

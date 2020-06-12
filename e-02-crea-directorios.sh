@@ -10,6 +10,6 @@ mkdir -p /u01/app/oracle/oradata/MOSAproy/disk_1
 mkdir -p /u01/app/oracle/oradata/MOSAproy/disk_2
 mkdir -p /u01/app/oracle/oradata/MOSAproy/disk_3
 
-chown -R oracle:oinstall /u01/app/oracle/oradata/MOSAproy/disk_1/*
+chown -R oracle:oinstall /u01/app/oracle/oradata/MOSAproy
 
 chmod 755 /u01/app/oracle/oradata/MOSAproy
