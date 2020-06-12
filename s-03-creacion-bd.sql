@@ -5,7 +5,7 @@
 --@Descripción: 
 --         Creación de la base de datos.
 
-create database cgmtbd2
+create database mosaproy
 user sys identified by system2
 user system identified by system2
 logfile group 1 (
