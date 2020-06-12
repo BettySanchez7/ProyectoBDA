@@ -6,8 +6,8 @@
 --         Creación de la base de datos.
 
 create database mosaproy
-user sys identified by system2
-user system identified by system2
+user sys identified by systemproy
+user system identified by systemproy
 logfile group 1 (
     '/u01/app/oracle/oradata/MOSAproy/disk_1/redo01a.log',
     '/u01/app/oracle/oradata/MOSAproy/disk_2/redo01b.log',
