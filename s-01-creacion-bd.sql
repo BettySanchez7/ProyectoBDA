@@ -1,3 +1,10 @@
+--@Integrantes: 
+--      Morales Téllez Carlos Gamaliel
+--      Sanchez Díaz María Beatriz
+--@Fecha de creación: 11 de junio de 2020
+--@Descripción: 
+--         Creación de la base de datos.
+
 create database cgmtbd2
 user sys identified by system2
 user system identified by system2
