@@ -10,7 +10,7 @@
 #usar la contraseña hola123# para no tener errores en la creación del archivo de passwords
 orapwd FILE='/u01/app/oracle/product/18.0.0/dbhome_1/dbs/orapwmosaproy' SYS=password SYSBACKUP=password
 
-cat <<'EOF' > "${ORACLE_HOME}"/dbs/initMOSAproy.ora
+cat <<'EOF' > "${ORACLE_HOME}"/dbs/initmosaproy.ora
 
 db_name='MOSAproy'
 memory_target=768M
