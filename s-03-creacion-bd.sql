@@ -43,8 +43,8 @@ size 200m reuse autoextend on next 5120k maxsize unlimited
 user_data tablespace usertbs
 datafile '/u01/app/oracle/oradata/MOSAproy/disk_1/usertbs01.dbf'
 size 200m reuse autoextend on maxsize unlimited;
-alter user sys identified by system2;
-alter user system identified by system2;
+alter user sys identified by systemproy;
+alter user system identified by systemproy;
 
 create tablespace apps_tbs logging
 datafile '/u01/app/oracle/oradata/MOSAproy/disk_1//apps01.dbf'
