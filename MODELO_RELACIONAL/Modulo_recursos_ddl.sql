@@ -8,6 +8,7 @@
 
 
 --EJECUTAR COMO USUARIO SYS
+connect sys/systemproy as sysdba
 
 grant references on mosaproy_bibliotecas.area to mosaproy_recursos;
 grant references on mosaproy_bibliotecas.biblioteca to mosaproy_recursos;
