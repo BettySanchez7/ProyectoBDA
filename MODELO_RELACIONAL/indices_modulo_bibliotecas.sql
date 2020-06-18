@@ -26,8 +26,4 @@ tablespace indx_tbs;
 create index area_area_id_ix 
     on area_biblioteca(area_id) 
 tablespace indx_tbs;
---INDICES BLOB
 
-create index usuario_usuario_foto_id_ix 
-    on usuario(usuario_foto_id) 
-tablespace indx_tbs;

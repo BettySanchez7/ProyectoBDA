@@ -74,12 +74,5 @@ tablespace indx_tbs;
 create index revista_editorial_id_ix 
     on revista(editorial_id) 
 tablespace indx_tbs;
----
-create index libro_libro_pdf_id_ix 
-    on libro(libro_pdf_id) 
-tablespace indx_tbs;
 
-create index tesis_tesis_pdf_id_ix 
-    on tesis(tesis_pdf_id) 
-tablespace indx_tbs;
 
