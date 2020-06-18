@@ -7,7 +7,17 @@
 --         DDL RECURSOS
 
 
+--EJECUTAR COMO USUARIO SYS
 
+grant references on mosaproy_bibliotecas.area to mosaproy_recursos;
+grant references on mosaproy_bibliotecas.biblioteca to mosaproy_recursos;
+grant references on mosaproy_bibliotecas.area_biblioteca to mosaproy_recursos;
+grant references on mosaproy_bibliotecas.usuario to mosaproy_recursos;
+grant references on mosaproy_bibliotecas.prestamo to mosaproy_recursos;
+
+
+--CAMBIAR A USUARIO 
+connect mosaproy_recursos/mosaproy_recursos
 -- 
 -- TABLE: AUTOR 
 --
