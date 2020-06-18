@@ -4,31 +4,16 @@
 --      Sanchez Díaz María Beatriz
 --@Fecha de creación: 16 de junio de 2020
 --@Descripción: 
---         INDICES
+--         INDICES MODULO_RECURSOS
 
-
-
-create index biblioteca_folio_uk 
-    on biblioteca(folio_uk)
-tablespace indx_tbs;
+connect mosaproy_recursos/mosaproy_recursos
 
 create index recurso_titulo_uk 
     on recurso(lower(titulo))
 tablespace indx_tbs;
 
-create index usuario_matricula_nombre_ux 
-    on usuario(matricula, nombre)
-tablespace indx_tbs;
-
 
 --INDICES DE LLAVES FORANEAS
-create index area_biblioteca_id_ix 
-    on area_biblioteca(biblioteca_id) 
-tablespace indx_tbs; 
-
-create index area_area_id_ix 
-    on area_biblioteca(area_id) 
-tablespace indx_tbs;
 
 create index hrs_recurso_status_id_ix 
     on historico_recurso_status(recurso_status_id) 
@@ -98,7 +83,3 @@ create index tesis_tesis_pdf_id_ix
     on tesis(tesis_pdf_id) 
 tablespace indx_tbs;
 
-
-create index usuario_usuario_foto_id_ix 
-    on usuario(usuario_foto_id) 
-tablespace indx_tbs;
