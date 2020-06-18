@@ -6,12 +6,23 @@
 --         Creación de los usuarios para cada módulo
 
 
-create user mosaproy_recursos
-    identified by mosaproy_recursos
-    quota unlimited on recursos_tbs;
+create user mosaproy_bibliotecas identified by mosaproy_bibliotecas
+  default tablespace bibliotecas_tbs
+  quota unlimited on bibliotecas_tbs
+  quota unlimited on indx_tbs
+  quota unlimited on blobs_tbs;
 
-create user mosaproy_bibliotecas
-    identified by mosaproy_bibliotecas
-    quota unlimited on bibliotecas_tbs;
+grant create table, create session, create procedure, 
+	create sequence, create index to mosaproy_bibliotecas;
+
+
+create user mosaproy_recursos identified by mosaproy_recursos
+  default tablespace recursos_tbs
+  quota unlimited on recursos_tbs
+  quota unlimited on indx_tbs
+  quota unlimited on blobs_tbs;
+
+grant create table, create session, create procedure, 
+	create sequence, create index to mosaproy_recursos;
 
 
