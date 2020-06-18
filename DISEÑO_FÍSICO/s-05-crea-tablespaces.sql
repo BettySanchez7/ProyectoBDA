@@ -10,7 +10,7 @@ create tablespace recursos_tbs
     datafile '/u01/app/oracle/oradata/MOSAproy/disk_1/recursos_tbs_01.dbf' size 100m, 
              '/u01/app/oracle/oradata/MOSAproy/disk_2/recursos_tbs_02.dbf' size 100m, 
              '/u01/app/oracle/oradata/MOSAproy/disk_3/recursos_tbs_03.dbf' size 100m
-    autoextent on next 100m maxsize unlimited
+    autoextend on next 100m maxsize unlimited
     extent management local autoallocate
     segment space management auto
 ;
@@ -19,7 +19,7 @@ create tablespace bibliotecas_tbs
     datafile '/u01/app/oracle/oradata/MOSAproy/disk_1/bibliotecas_tbs_01.dbf' size 100m, 
              '/u01/app/oracle/oradata/MOSAproy/disk_2/bibliotecas_tbs_02.dbf' size 100m,
              '/u01/app/oracle/oradata/MOSAproy/disk_3/bibliotecas_tbs_03.dbf' size 100m
-    autoextent on next 100m maxsize unlimited
+    autoextend on next 100m maxsize unlimited
     extent management local autoallocate
     segment space management auto
 ;
@@ -35,9 +35,9 @@ create tablespace indx_tbs logging
 
 create tablespace lobs_tbs
     datafile '/u01/app/oracle/oradata/MOSAproy/disk_1/lobs_tbs01.dbf' size 1000m, 
-             '/u02/app/oracle/oradata/MOSAproy/disk_2/lobs_tbs02.dbf' size 1000m,
-             '/u03/app/oracle/oradata/MOSAproy/disk_3/lobs_tbs03.dbf' size 1000m
-    autoextent on next 100m maxsize unlimited
+             '/u01/app/oracle/oradata/MOSAproy/disk_2/lobs_tbs02.dbf' size 1000m,
+             '/u01/app/oracle/oradata/MOSAproy/disk_3/lobs_tbs03.dbf' size 1000m
+    autoextend on next 100m maxsize unlimited
     extent management local autoallocate
     segment space management auto
 ;
