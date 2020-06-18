@@ -102,3 +102,11 @@ CREATE TABLE PRESTAMO(
         CREATE UNIQUE INDEX PRESTAMO_PK ON PRESTAMO(PRESTAMO_ID)
         TABLESPACE INDX_TBS)
 ) TABLESPACE BIBIOTECAS_TBS;
+
+--
+-- ORORGANDO ACCESO A TODAS LAS TABLAS A MOSAPROY_RECURSOS
+--
+
+grant select, insert, update, delete on mosaproy_bibliotecas.area, mosproy_bibliotecas.biblioteca,
+  mosaproy_bibliotecas.area_biblioteca, mosaproy_bibliotecas.usuario, mosaproy_bibliotecas.prestamo 
+  to mosaproy_recursos;

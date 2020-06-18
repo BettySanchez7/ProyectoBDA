@@ -25,4 +25,7 @@ create user mosaproy_recursos identified by mosaproy_recursos
 grant create table, create session, create procedure, 
 	create sequence, create index to mosaproy_recursos;
 
+grant select on mosaproy_bibliotecas.area, mosproy_bibliotecas.biblioteca,
+  mosaproy_bibliotecas.area_biblioteca, mosaproy_bibliotecas.usuario, mosaproy_bibliotecas.prestamo 
+  to mosaproy_recursos;
 
