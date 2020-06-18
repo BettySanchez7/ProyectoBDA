@@ -10,20 +10,20 @@ create user mosaproy_bibliotecas identified by mosaproy_bibliotecas
   default tablespace bibliotecas_tbs
   quota unlimited on bibliotecas_tbs
   quota unlimited on indx_tbs
-  quota unlimited on blobs_tbs;
+  quota unlimited on lobs_tbs;
 
 grant create table, create session, create procedure, 
-	create sequence, create index to mosaproy_bibliotecas;
+	create sequence to mosaproy_bibliotecas;
 
 
 create user mosaproy_recursos identified by mosaproy_recursos
   default tablespace recursos_tbs
   quota unlimited on recursos_tbs
   quota unlimited on indx_tbs
-  quota unlimited on blobs_tbs;
+  quota unlimited on lobs_tbs;
 
 grant create table, create session, create procedure, 
-	create sequence, create index to mosaproy_recursos;
+	create sequence to mosaproy_recursos;
 
 grant select on mosaproy_bibliotecas.area, mosproy_bibliotecas.biblioteca,
   mosaproy_bibliotecas.area_biblioteca, mosaproy_bibliotecas.usuario, mosaproy_bibliotecas.prestamo 
