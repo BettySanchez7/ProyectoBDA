@@ -5,6 +5,11 @@
 --@Descripción: 
 --         Se habilita el modo compartido de la base de datos
 
+-- Antes de ejecutar este script es necesario tener un spfile creado
+-- create spfile from pfile;
+alter system set db_domain='fi.unam' scope=spfile;
+alter system set dispatchers='(dispatchers=3)(protocol=tcp)' scope=spfile;
+alter system set shared_servers=20 scope=spfile;
 
-alter system set dispatchers='(dispatchers=3)(protocol=tcp)';
-alter system set shared_servers=20;
+Prompt ¡Ejecución exitosa!: 
+Prompt      Para que los cambios se vean reflejados, reinicia la instancia
