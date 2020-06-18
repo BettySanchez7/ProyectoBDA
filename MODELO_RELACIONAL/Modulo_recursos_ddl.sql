@@ -10,6 +10,12 @@
 --EJECUTAR COMO USUARIO SYS
 connect sys/systemproy as sysdba
 
+grant select, insert, update, delete on mosaproy_bibliotecas.area to mosaproy_recursos;
+grant select, insert, update, delete on mosproy_bibliotecas.biblioteca to mosaproy_recursos;
+grant select, insert, update, delete on mosaproy_bibliotecas.area_biblioteca to mosaproy_recursos;
+grant select, insert, update, delete on mosaproy_bibliotecas.usuario to mosaproy_recursos;
+grant select, insert, update, delete on mosaproy_bibliotecas.prestamo  to mosaproy_recursos; 
+
 grant references on mosaproy_bibliotecas.area to mosaproy_recursos;
 grant references on mosaproy_bibliotecas.biblioteca to mosaproy_recursos;
 grant references on mosaproy_bibliotecas.area_biblioteca to mosaproy_recursos;
