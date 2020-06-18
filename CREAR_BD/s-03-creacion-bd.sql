@@ -46,13 +46,3 @@ size 200m reuse autoextend on maxsize unlimited;
 alter user sys identified by systemproy;
 alter user system identified by systemproy;
 
-create tablespace apps_tbs logging
-datafile '/u01/app/oracle/oradata/MOSAproy/disk_1//apps01.dbf'
-size 500m reuse autoextend on next 1280k maxsize unlimited
-extent management local;
--- create a tablespace for indexes, separate from user tablespace
---(optional)
-create tablespace indx_tbs logging
-datafile '/u01/app/oracle/oradata/MOSAproy/disk_1/indx01.dbf'
-size 100m reuse autoextend on next 1280k maxsize unlimited
-extent management local;
