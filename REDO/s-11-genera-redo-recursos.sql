@@ -17,8 +17,11 @@ declare
 
 begin
   -- INSERT
+    
   -- UPDATE
+  
   -- DELETE
+
 end;
 /
 
@@ -40,26 +43,74 @@ end;
 ---------------------------------------------------
 ---- Redo para la tabla RECURSO_STATUS ------------
 ---------------------------------------------------
--- ¿ÉSTA TABLA GENERA REDO DE FORMA CONTINUA?
 declare
 
 begin
   -- INSERT
+
   -- UPDATE
+
   -- DELETE
+
 end;
 /
 
 
----------------------------------------------------
----- Redo para la tabla RECURSO -------------------
----------------------------------------------------
+-----------------------------------------------------
+---- Redo para las tablas RECURSO, LIBRO, REVISTA, --
+-----------------------------------------------------
 declare
+    v_max_id number;
+    v_count number;
+    v_random_isbn pls_integer;
+    v_random_editorial pls_integer;
 
+    cursor cur_insert is 
+        select recurso_seq.nextval as recurso_id, titulo, clasificacion,
+            fecha_adquisicion, fecha_status, tipo_recurso, area_id,
+            recurso_status_id, biblioteca_id -- No usa recurso_nuevo_id para facilitar la simulación
+        from recurso sample(60) where rownum <= 50 and recurso_nuevo_id is null;
+    cusor cur_update is
+        select recurso_id from recurso sample(60) where rownum <= 50 and recurso_;
+    cursor cur_delete is 
+        select recurso_id from recurso sample(60) where rownum <= 50;
 begin
   -- INSERT
+    v_count := 0;
+    for r in cur_insert loop 
+        insert into recurso(
+            recurso_id, titulo, clasificacion, fecha_adquisicion, 
+            fecha_status, tipo_recurso, area_id, recurso_status_id,  -- recurso_nuevo_id,
+            biblioteca_id
+        )
+        values (
+            r.recurso_id, r.titulo, r.clasificacion, r.fecha_adquisicion,
+            r.fecha_status, r.tipo_recurso, r.area_id, r.recurso_status_id, -- r.recurso_nuevo_id,
+            r.bibliteca_id
+        );
+        -- En caso de que el recurso sea un libro, insertar en la tabla libro
+        if r.tipo_recurso == 1 then
+            v_random_isbn := dbms_random.value(1,9999999999999);
+            v_random_editorial := dbms_random.value(1,60);
+            insert into libro(
+                recurso_id, isbn, editorial_id, pdf
+            )
+            values(                                                 -- Generar LOB aleatoriamente
+                r.recurso_id, v_random_isbn, v_random_editorial, to_lob(hextoraw('ab9ef23123a'))
+            );
+        else if r.tipo_recurso == 2 then
+
+        else if r.tipo_recurso == 3 then
+        
+        end if;
+
+        v_count := v_count + sql%rowcount;
+    end loop;
   -- UPDATE
+    v_count := 0;
+
   -- DELETE
+
 end;
 /
 
