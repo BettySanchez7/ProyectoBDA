@@ -6,6 +6,8 @@
 --@Descripción: 
 --         SECUENCIAS MODULO RECURSOS
 
+connect mosaproy_recursos/mosaproy_recursos
+
 create sequence autor_seq
 start with 1
 increment by 1
