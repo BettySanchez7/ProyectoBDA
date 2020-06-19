@@ -65,15 +65,15 @@ declare
     v_random_isbn pls_integer;
     v_random_editorial pls_integer;
 
-    cursor cur_insert is 
+    cursor cur_insert_libro is 
         select recurso_seq.nextval as recurso_id, titulo, clasificacion,
             fecha_adquisicion, fecha_status, tipo_recurso, area_id,
             recurso_status_id, biblioteca_id -- No usa recurso_nuevo_id para facilitar la simulación
-        from recurso sample(60) where rownum <= 50 and recurso_nuevo_id is null;
-    cusor cur_update is
-        select recurso_id from recurso sample(60) where rownum <= 50 and recurso_;
-    cursor cur_delete is 
-        select recurso_id from recurso sample(60) where rownum <= 50;
+        from recurso sample(60) where rownum <= 50 and recurso_nuevo_id is null and tipo_recurso = 1;
+    cusor cur_update_libro is
+        select recurso_id from recurso sample(100) where rownum <= 50 and recurso_nuevo_id is null and tipo_recurso = 1;
+    cursor cur_delete_libro is 
+        select recurso_id from recurso sample(100) where rownum <= 50 and recurso_nuevo_id is null and tipo_recurso = 1;
 begin
   -- INSERT
     v_count := 0;
@@ -99,7 +99,12 @@ begin
                 r.recurso_id, v_random_isbn, v_random_editorial, to_lob(hextoraw('ab9ef23123a'))
             );
         else if r.tipo_recurso == 2 then
-
+            insert into tesis(
+                recurso_id, tesista, carrera, universidad, fecha_publicacion, pdf
+            )
+            values(
+                r.recurso_id, 
+            );
         else if r.tipo_recurso == 3 then
         
         end if;
