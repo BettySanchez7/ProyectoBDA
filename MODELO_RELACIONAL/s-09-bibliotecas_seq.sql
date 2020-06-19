@@ -6,6 +6,8 @@
 --@Descripción: 
 --         SECUENCIAS MODULO BIBLIOTECAS
 
+connect mosaproy_bibliotecas/mosaproy_bibliotecas
+
 create sequence area_seq
 start with 1
 increment by 1
