@@ -8,44 +8,6 @@
 set serveroutput on;
 whenever sqlerror exit rollback
 
----------------------------------------------------
--------- Redo para la tabla AREA ------------------
----------------------------------------------------
--- ¿ÉSTA TABLA GENERA REDO DE FORMA CONTINUA?
-declare
-
-begin
-  -- INSERT
-  -- UPDATE
-  -- DELETE
-end;
-/
-
----------------------------------------------------
--------- Redo para la tabla BIBLIOTECA ------------
----------------------------------------------------
--- ¿ÉSTA TABLA GENERA REDO DE FORMA CONTINUA?
-declare 
-
-begin
-  -- INSERT
-  -- UPDATE
-  -- DELETE
-end;
-/
-
----------------------------------------------------
----- Redo para la tabla AREA_BIBLIOTECA -----------
----------------------------------------------------
--- ¿ÉSTA TABLA GENERA REDO DE FORMA CONTINUA?
-declare
-
-begin
-  -- INSERT
-  -- UPDATE
-  -- DELETE
-end;
-/
 
 ---------------------------------------------------
 ---- Redo para la tabla USUARIO -------------------
