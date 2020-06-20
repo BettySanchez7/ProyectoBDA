@@ -9,22 +9,6 @@ set serveroutput on;
 whenever sqlerror exit rollback
 
 
----------------------------------------------------
----- Redo para la tabla RECURSO_STATUS ------------
----------------------------------------------------
-declare
-
-begin
-  -- INSERT
-
-  -- UPDATE
-
-  -- DELETE
-
-end;
-/
-
-
 -----------------------------------------------------
 ---- Redo para las tablas RECURSO, LIBRO, REVISTA, --
 -----------------------------------------------------
@@ -37,7 +21,7 @@ declare
     cursor cur_insert_libro is 
         select recurso_seq.nextval as recurso_id, titulo, clasificacion,
             fecha_adquisicion, fecha_status, tipo_recurso, area_id,
-            recurso_status_id, biblioteca_id -- No usa recurso_nuevo_id para facilitar la simulación
+            recurso_status_id, biblioteca_id 
         from recurso sample(60) where rownum <= 50 and recurso_nuevo_id is null and tipo_recurso = 1;
     cusor cur_update_libro is
         select recurso_id from recurso sample(100) where rownum <= 50 and recurso_nuevo_id is null and tipo_recurso = 1;
