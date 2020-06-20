@@ -29,9 +29,6 @@ declare
       round(dbms_random.value(0,1)) as con_prestamo, round(dbms_random.value(0,1)) as con_prestamo_vencido 
     from usuario sample(60) where rownum <= 50;
 
-  cursor cur_delete is
-    select usuario_id from usuario sample(60) where rownum <= 50;
-
 begin
   -- INSERT
     v_count := 0;
@@ -51,13 +48,6 @@ begin
     end loop;
     dbms_output.put_line('Registros modificados en USUARIO: ' || v_count);
 
-  -- DELETE
-    v_count := 0;
-    for r in cur_delete loop
-      delete from usuario where usuario_id = r.usuario_id;
-      v_count := v_count + sql%rowcount;
-    end loop;
-    dbms_output.put_line('Registros eliminados en USUARIO: ' || v_count);
 end;
 /
 
@@ -73,7 +63,11 @@ declare
   cursor cur_update is
     select prestamo_id, usuario_id, sysdate as fecha_entrega, trunc(dbms_random.value(1,1000),2) as importe_multa
     from prestamo sample(60) where rownum <= 50;
+
+  cursor cur_delete is
+    select prestamo_id, usuario_id from prestamo sample(60) where rownum <= 50;
   
+
 begin
   -- INSERT
   v_count := 0;
