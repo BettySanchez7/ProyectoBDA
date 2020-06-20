@@ -71,13 +71,9 @@ declare
     from prestamo sample(60) where rownum <= 50;
 
   cursor cur_update is
-    select prestamo_id, sysdate as fecha_entrega, trunc(dbms_random.value(1,1000),2) as importe_multa
+    select prestamo_id, usuario_id, sysdate as fecha_entrega, trunc(dbms_random.value(1,1000),2) as importe_multa
     from prestamo sample(60) where rownum <= 50;
-
-  cursos cur_delete is
-    select prestamo_id from prestamo sample(60) where rownum <= 50;
-  dbms_output.put_line('Registros insertados en PRESTAMO: ' || v_count);
-
+  
 begin
   -- INSERT
   v_count := 0;
@@ -86,23 +82,16 @@ begin
     values(r.prestamo_id, r.usuario_id, r.fecha_prestamo, r.vigencia);
     v_count := v_count + sql%rowcount;
   end loop;
-
+  dbms_output.put_line('Registros insertados en PRESTAMO: ' || v_count);
   -- UPDATE
   v_count := 0;
   for r in cur_update loop
     update prestamo set fecha_entrega = r.fecha_entrega, importe_multa = r.importe_multa
-    where prestamo_id = r.prestamo_id;
+    where prestamo_id = r.prestamo_id and usuario_id = r.usuario_id;
     v_count := v_count + sql%rowcount;
   end loop;
   dbms_output.put_line('Registros modificados en PRESTAMO: ' || v_count);
 
-  -- DELETE
-  v_count := 0;
-  for r in cur_delete loop
-    delete from prestamo where prestamo_id = r.prestamo_id;
-    v_count := v_count + sql%rowcount;
-  end loop;
-  dbms_output.put_line('Registros eliminados en PRESTAMO: ' || v_count);
 end;
 /
 
