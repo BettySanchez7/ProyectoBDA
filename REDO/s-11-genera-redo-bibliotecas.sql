@@ -24,7 +24,7 @@ declare
     from usuario sample(60) where rownum <= 50;
 
   cursor cur_update is
-    select (dbms_random.string('l',8)|| substr(email, instr(email,'@',1), length(email))) as email, 
+    select usuario_id, (dbms_random.string('l',8)|| substr(email, instr(email,'@',1), length(email))) as email, 
       dbms_random.string('l',8) as password, 
       round(dbms_random.value(0,1)) as con_prestamo, round(dbms_random.value(0,1)) as con_prestamo_vencido 
     from usuario sample(60) where rownum <= 50;
@@ -36,7 +36,7 @@ begin
   -- INSERT
     v_count := 0;
     for r in cur_insert loop
-      insert into usuario(usuario_id, nombre, ap_paterno, ap_materno, matricula, email, semestre, usename, password, con_prestamo, con_prestamo_vencido, foto)
+      insert into usuario(usuario_id, nombre, ap_paterno, ap_materno, matricula, email, semestre, username, password, con_prestamo, con_prestamo_vencido, foto)
       values(r.usuario_id, r.nombre, r.ap_paterno, r.ap_materno, r.matricula, r.email, r.semestre, r.username, r.password, r.con_prestamo, r.con_prestamo_vencido, r.foto);
       v_count := v_count + sql%rowcount;
     end loop;
