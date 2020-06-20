@@ -56,7 +56,7 @@ create index recurso_recurso_nuevo_id_ix
 tablespace indx_tbs;
 
 create index recurso_biblioteca_id_ix 
-    on recurso(bilioteca_id) 
+    on recurso(biblioteca_id) 
 tablespace indx_tbs;
 
 create index rp_recurso_id_ix 
