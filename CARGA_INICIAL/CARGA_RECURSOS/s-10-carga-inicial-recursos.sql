@@ -14,11 +14,11 @@ Prompt realizando la carga de datos
 set define on
 Prompt confirmando cambios 3 primeras tablas
 
-
 whenever sqlerror exit rollback
 set define off
 Prompt realizando la carga de datos
 @@s-10-recurso.sql
+set define on
 Prompt confirmando cambios recurso
 
 whenever sqlerror exit rollback
@@ -36,4 +36,3 @@ set define on
 Prompt confirmando cambios segunda parte
 
 commit;
-
