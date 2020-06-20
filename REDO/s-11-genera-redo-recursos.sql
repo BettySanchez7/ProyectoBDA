@@ -10,37 +10,6 @@ whenever sqlerror exit rollback
 
 
 ---------------------------------------------------
--------- Redo para la tabla AUTOR -----------------
----------------------------------------------------
--- ¿ÉSTA TABLA GENERA REDO DE FORMA CONTINUA?
-declare
-
-begin
-  -- INSERT
-    
-  -- UPDATE
-  
-  -- DELETE
-
-end;
-/
-
-
----------------------------------------------------
--------- Redo para la tabla EDITORIAL -------------
----------------------------------------------------
--- ¿ÉSTA TABLA GENERA REDO DE FORMA CONTINUA?
-declare 
-
-begin
-  -- INSERT
-  -- UPDATE
-  -- DELETE
-end;
-/
-
-
----------------------------------------------------
 ---- Redo para la tabla RECURSO_STATUS ------------
 ---------------------------------------------------
 declare
