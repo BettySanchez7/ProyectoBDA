@@ -37,12 +37,11 @@ declare
         select recurso_seq.nextval as recurso_id, titulo, 
             dbms_random.string('l',18) as clasificacion,
             sysdate as fecha_adquisicion, sysdate as fecha_status, 
-            1 as tipo_recurso, area_id, recurso_status_id, 
+            tipo_recurso, area_id, recurso_status_id, 
             biblioteca_id 
         from recurso sample(60) 
         where rownum <= 50 
-        and recurso_nuevo_id is null 
-        and tipo_recurso = 1;
+        and recurso_nuevo_id is null;
     
     cursor cur_update is
         select recurso_id, round(dbms_random.value(1,7)) as recurso_status_id
