@@ -9,11 +9,13 @@
 
 create pfile from spfile;
 
-alter system set log_archive_max_processes=5;
+alter system set log_archive_max_processes=5 scope=spfile;
 
-alter system set log_archive_dest_1='LOCATION=/u01/app/oracle/oradata/MOSAproy/disk_1 MANDATORY'
+--MODIFICAR RUTAS
+alter system set log_archive_dest_1='LOCATION=/u01/app/oracle/oradata/MOSAproy/disk_1/archivelogs MANDATORY' scope=spfile;
 
-alter system set log_archive_dest_2='LOCATION=USE_DB_RECOVERY_FILE_DEST';
+--alter system set log_archive_dest_2='LOCATION=USE_DB_RECOVERY_FILE_DEST';
+alter system set log_archive_dest_2='LOCATION=/u01/app/oracle/oradata/MOSAproy/disk_2/archivelogs' scope=spfile;
 
 alter system set log_archive_format=arch_mosaproy_%t_%s_%r.arc
 
