@@ -31,6 +31,7 @@ declare
     v_universidad varchar2(100);
     v_random_emision number;
     v_sinopsis varchar2(1024);
+    v_recurso_nuevo_id number;
 
     cursor cur_insert is 
         select recurso_seq.nextval as recurso_id, titulo, 
@@ -44,8 +45,7 @@ declare
         and tipo_recurso = 1;
     
     cursor cur_update is
-        select recurso_id, round(dbms_random.value(1,7)) as recurso_status_id, 
-            round(dbms_random.value(1,200)) as recurso_nuevo_id
+        select recurso_id, round(dbms_random.value(1,7)) as recurso_status_id
         from recurso sample(60) 
         where rownum <= 50 
         and recurso_nuevo_id is null;
@@ -138,7 +138,16 @@ begin
   -- UPDATE
     v_count := 0;
     for r in cur_update loop
-        update recurso set recurso_status_id = r.recurso_status_id, recurso_nuevo_id = r.recurso_nuevo_id
+        
+        select recurso_id into v_recurso_nuevo_id
+        from (
+          select recurso_id 
+          from recurso sample(10)
+          order by dbms_random.random
+        )
+        where rownum < 2;
+
+        update recurso set recurso_status_id = r.recurso_status_id, recurso_nuevo_id = v_recurso_nuevo_id
         where recurso_id = r.recurso_id;
         insert into historico_recurso_status(historico_recurso_status_id, fecha_status, recurso_status_id, recurso_id)
         values(hist_recurso_status_seq.nextval, sysdate, r.recurso_status_id, r.recurso_id);
@@ -166,45 +175,91 @@ end;
 /
 
 
----------------------------------------------------
----- Redo para la tabla HISTORICO_RECURSO_STATUS --
----------------------------------------------------
---declare
-
---begin
-  -- INSERT
-  -- UPDATE
-  -- DELETE
---end;
---/
-
-
-
-
----------------------------------------------------
------- Redo para la tabla PALABRA_CLAVE -----------
----------------------------------------------------
---declare
-
---begin
-  -- INSERT
-  -- UPDATE
-  -- DELETE
---end;
---/
-
 
 ---------------------------------------------------
 ---- Redo para la tabla PALABRA_CLAVE_RECURSO -----
 ---------------------------------------------------
---declare
-
---begin
+declare
+  v_count number;
+  v_palabra_clave_id number;
+  v_recurso_id number;
+  v_palabra_clave_recurso_id number;
+  v_eliminar number;
+  v_insertar number;
+  v_actualizar number;
+begin
+  v_count := 0;
+  v_insertar := round(dbms_random.value(500,1000));
   -- INSERT
+  for r in 1..v_insertar loop
+      select palabra_clave_id into v_palabra_clave_id
+      from (
+          select palabra_clave_id
+          from palabra_clave sample(10)
+          order by dbms_random.random
+      ) 
+      where rownum < 2;
+      select recurso_id into v_recurso_id
+      from (
+          select recurso_id
+          from recurso sample(10)
+          order by dbms_random.random
+      )
+      where rownum < 2;
+      insert into palabra_clave_recurso(palabra_clave_recurso_id, palabra_clave_id, recurso_id)
+      values(pal_clave_recurso_seq.nextval, v_palabra_clave_id, v_recurso_id);
+      v_count := v_count + sql%rowcount;
+  end loop;
+  dbms_output.put_line('Registros insertados en PALABRA_CLAVE_RECURSO: ' || v_count);
+
+  v_actualizar := round(dbms_random.value(50,100));
+  v_count := 0;
   -- UPDATE
+  for r in 1..v_actualizar loop
+      select palabra_clave_recurso_id into v_palabra_clave_recurso_id
+      from (
+        select palabra_clave_recurso_id
+        from palabra_clave_recurso sample(10)
+        order by dbms_random.random
+      )
+      where rownum < 2;
+      select palabra_clave_id into v_palabra_clave_id
+      from (
+          select palabra_clave_id
+          from palabra_clave sample(10)
+          order by dbms_random.random
+      ) 
+      where rownum < 2;
+      select recurso_id into v_recurso_id
+      from (
+          select recurso_id
+          from recurso sample(10)
+          order by dbms_random.random
+      )
+      where rownum < 2;
+      update palabra_clave_recurso set palabra_clave_id = v_palabra_clave_id, recurso_id = v_recurso_id 
+      where palabra_clave_recurso_id = v_palabra_clave_recurso_id;
+      v_count := v_count + sql%rowcount;
+  end loop;
+  dbms_output.put_line('Registros modificados en PALABRA_CLAVE_RECURSO: ' || v_count);
+
+  v_count := 0;
+  v_eliminar := round(dbms_random.value(50,100));
   -- DELETE
---end;
---/
+  for r in 1..v_eliminar loop
+    select palabra_clave_recurso_id into v_palabra_clave_recurso_id
+    from (
+        select palabra_clave_recurso_id
+        from palabra_clave_recurso sample(10)
+        order by dbms_random.random
+    )
+    where rownum < 2;
+    delete from palabra_clave_recurso where palabra_clave_recurso_id = v_palabra_clave_recurso_id;
+    v_count := v_count + sql%rowcount;
+  end loop;
+  dbms_output.put_line('Registros eliminados en PALABRA_CLAVE_RECURSO: ' || v_count);
+end;
+/
 
 
 ---------------------------------------------------
@@ -215,7 +270,42 @@ end;
 --begin
   -- INSERT
   -- UPDATE
+  --for in 1..v_actualizar loop
+    --  select recurso_prestamo_id into v_recurso_prestamo_id
+      --from (
+        --select recurso_prestamo_id
+        --from recurso_prestamo sample(10)
+        --order by dbms_random.random
+      --)
+      --where rowcount < 2;
+      --select palabra_clave_id into v_palabra_clave_id
+      --from (
+       --   select palabra_clave_id
+         -- from palabra_clave sample(10)
+          --order by dbms_random.random
+      --) 
+      --where rownum < 2;
+      --select recurso_id into v_recurso_id
+      --from (
+        --  select recurso_id
+        --  from recurso sample(10)
+        --  order by dbms_random.random
+      --)
+      --where rownum < 2;
+      --update recurso_prestamo set recurso_id = v_recurso_id, prestamo_id
+  --end loop;
   -- DELETE
+  --for r in 1..v_eliminar loop
+    --  select recurso_prestamo_id into v_recurso_prestamo_id
+      --from (
+        --select recurso_prestamo_id
+        --from recurso_prestamo sample(10)
+        --order by dbms_random.random
+      --)
+      --where rowcount < 2;
+      --delete from recurso_prestamo where recurso_prestamo_id = v_recurso_prestamo_id;
+  --end loop;
+
 --end;
 --/
 
