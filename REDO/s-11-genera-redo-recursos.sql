@@ -155,19 +155,24 @@ begin
     dbms_output.put_line('Registros modificados en RECURSO: ' || v_count);
     v_count_historico := v_count_historico + v_count;
     -- DELETE
-    v_count := 0;
-    for r in cur_delete loop
-        if r.tipo_recurso = 1 then
-            delete from libro where recurso_id = r.recurso_id;
-        elsif r.tipo_recurso = 2 then
-            delete from tesis where recurso_id = r.recurso_id;
-        elsif r.tipo_recurso = 3 then
-            delete from revista where recurso_id = r.recurso_id;
-        end if;
-        delete from recurso where recurso_id = r.recurso_id;
-        v_count := v_count + sql%rowcount;
-    end loop;
-    dbms_output.put_line('Registros eliminados en RECURSO: ' || v_count);
+    --v_count := 0;
+    --for r in cur_delete loop
+        --if r.tipo_recurso = 1 then
+            --delete from libro_autor where recurso_id = r.recurso_id;
+            --delete from palabra_clave_recurso where recurso_id = r.recurso_id;
+            --delete from historico_recurso_status where recurso_id = r.recurso_id;
+            --delete from recurso_prestamo where recurso_id = r.recurso_id;
+            --delete from recurso_id where recurso_nuevo_id = r.recurso_id;
+            --delete from libro where recurso_id = r.recurso_id;
+        --elsif r.tipo_recurso = 2 then
+            --delete from tesis where recurso_id = r.recurso_id;
+        --elsif r.tipo_recurso = 3 then
+            --delete from revista where recurso_id = r.recurso_id;
+        --end if;
+        --delete from recurso where recurso_id = r.recurso_id;
+        --v_count := v_count + sql%rowcount;
+    --end loop;
+    --dbms_output.put_line('Registros eliminados en RECURSO: ' || v_count);
 
     dbms_output.put_line('Registros insertados en HISTORICO_RECURSO_STATUS: ' || v_count_historico);
 end;
