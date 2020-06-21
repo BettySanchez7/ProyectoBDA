@@ -212,8 +212,8 @@ begin
   end loop;
   dbms_output.put_line('Registros insertados en PALABRA_CLAVE_RECURSO: ' || v_count);
 
-  v_actualizar := round(dbms_random.value(50,100));
   v_count := 0;
+  v_actualizar := round(dbms_random.value(50,100));
   -- UPDATE
   for r in 1..v_actualizar loop
       select palabra_clave_recurso_id into v_palabra_clave_recurso_id
@@ -265,49 +265,89 @@ end;
 ---------------------------------------------------
 ------ Redo para la tabla RECURSO_PRESTAMO --------
 ---------------------------------------------------
---declare
+declare
+  v_count number;
+  v_insertar number;
+  v_actualizar number;
+  v_eliminar number;
+  v_recurso_prestamo_id number;
+  v_recurso_id number;
+  v_prestamo_id number;
+  v_usuario_id number;
 
---begin
+begin
+  v_count := 0;
+  v_insertar := round(dbms_random.value(500,1000));
   -- INSERT
-  -- UPDATE
-  --for in 1..v_actualizar loop
-    --  select recurso_prestamo_id into v_recurso_prestamo_id
-      --from (
-        --select recurso_prestamo_id
-        --from recurso_prestamo sample(10)
-        --order by dbms_random.random
-      --)
-      --where rowcount < 2;
-      --select palabra_clave_id into v_palabra_clave_id
-      --from (
-       --   select palabra_clave_id
-         -- from palabra_clave sample(10)
-          --order by dbms_random.random
-      --) 
-      --where rownum < 2;
-      --select recurso_id into v_recurso_id
-      --from (
-        --  select recurso_id
-        --  from recurso sample(10)
-        --  order by dbms_random.random
-      --)
-      --where rownum < 2;
-      --update recurso_prestamo set recurso_id = v_recurso_id, prestamo_id
-  --end loop;
-  -- DELETE
-  --for r in 1..v_eliminar loop
-    --  select recurso_prestamo_id into v_recurso_prestamo_id
-      --from (
-        --select recurso_prestamo_id
-        --from recurso_prestamo sample(10)
-        --order by dbms_random.random
-      --)
-      --where rowcount < 2;
-      --delete from recurso_prestamo where recurso_prestamo_id = v_recurso_prestamo_id;
-  --end loop;
+  for r in 1..v_insertar loop
+      select prestamo_id, usuario_id into v_prestamo_id, v_usuario_id
+      from (
+          select prestamo_id, usuario_id
+          from mosaproy_bibliotecas.prestamo sample(10)
+          order by dbms_random.random
+      )
+      where rownum < 2;
+      select recurso_id into v_recurso_id
+      from (
+        select recurso_id
+        from recurso sample(10)
+        order by dbms_random.random
+      )
+      where rownum < 2;
+      insert into recurso_prestamo(recurso_prestamo_id, recurso_id, prestamo_id,usuario_id)
+      values(recurso_prestamo_seq.nextval, v_recurso_id, v_prestamo_id, v_usuario_id);
+      v_count := v_count + sql%rowcount;
+  end loop;
+  dbms_output.put_line('Registros insertados en RECURSO_PRESTAMO: ' || v_count);
 
---end;
---/
+  v_count := 0;
+  v_actualizar := round(dbms_random.value(50,100));
+  -- UPDATE
+  for r in 1..v_actualizar loop
+      select recurso_prestamo_id into v_recurso_prestamo_id
+      from (
+        select recurso_prestamo_id
+        from recurso_prestamo sample(10)
+        order by dbms_random.random
+      )
+      where rownum < 2;
+      select recurso_id into v_recurso_id
+      from (
+          select recurso_id
+          from recurso sample(10)
+          order by dbms_random.random
+      )
+      where rownum < 2;
+      select prestamo_id, usuario_id into v_prestamo_id, v_usuario_id
+      from (
+          select prestamo_id, usuario_id
+          from mosaproy_bibliotecas.prestamo sample(10)
+          order by dbms_random.random
+      )
+      where rownum < 2;
+      update recurso_prestamo set recurso_id = v_recurso_id, prestamo_id = v_prestamo_id, usuario_id = v_usuario_id
+      where recurso_prestamo_id = v_recurso_prestamo_id;
+      v_count := v_count + sql%rowcount;
+  end loop;
+  dbms_output.put_line('Registros modificados en RECURSO_PRESTAMO: ' || v_count);
+
+  v_count := 0;
+  v_eliminar := round(dbms_random.value(50,100));
+  -- DELETE
+  for r in 1..v_eliminar loop
+      select recurso_prestamo_id into v_recurso_prestamo_id
+      from (
+        select recurso_prestamo_id
+        from recurso_prestamo sample(10)
+        order by dbms_random.random
+      )
+      where rownum < 2;
+      delete from recurso_prestamo where recurso_prestamo_id = v_recurso_prestamo_id;
+      v_count := v_count + sql%rowcount;
+  end loop;
+  dbms_output.put_line('Registros eliminados en RECURSO_PRESTAMO: ' || v_count);
+end;
+/
 
 
 Prompt Confirmando Cambios
