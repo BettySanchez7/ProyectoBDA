@@ -22,7 +22,7 @@ whenever sqlerror exit rollback
 --- Redo para las tablas RECURSO, LIBRO, TESIS, REVISTA --
 ----------------------------------------------------------
 declare
-    v_max_id number;
+    v_count_historico number;
     v_count number;
     v_random_isbn number;
     v_random_editorial number;
@@ -58,7 +58,7 @@ declare
 
 
 begin
-
+    v_count_historico := 0;
   -- INSERT
     v_count := 0;
     for r in cur_insert loop 
@@ -72,6 +72,10 @@ begin
             r.fecha_status, r.tipo_recurso, r.area_id, r.recurso_status_id, 
             r.biblioteca_id
         );
+
+        insert into historico_recurso_status(historico_recurso_status_id, fecha_status, recurso_status_id, recurso_id)
+        values(hist_recurso_status_seq.nextval, sysdate, r.recurso_status_id, r.recurso_id);
+
         if r.tipo_recurso = 1 then
             v_random_isbn := round(dbms_random.value(1,9999999999999));
             v_random_editorial := round(dbms_random.value(1,60));
@@ -130,16 +134,18 @@ begin
         v_count := v_count + sql%rowcount;
     end loop;
     dbms_output.put_line('Registros insertados en RECURSO: ' || v_count);
-
+    v_count_historico := v_count_historico + v_count;
   -- UPDATE
     v_count := 0;
     for r in cur_update loop
         update recurso set recurso_status_id = r.recurso_status_id, recurso_nuevo_id = r.recurso_nuevo_id
         where recurso_id = r.recurso_id;
+        insert into historico_recurso_status(historico_recurso_status_id, fecha_status, recurso_status_id, recurso_id)
+        values(hist_recurso_status_seq.nextval, sysdate, r.recurso_status_id, r.recurso_id);
         v_count := v_count + sql%rowcount;
     end loop;
     dbms_output.put_line('Registros modificados en RECURSO: ' || v_count);
-  
+    v_count_historico := v_count_historico + v_count;
     -- DELETE
     v_count := 0;
     for r in cur_delete loop
@@ -154,6 +160,8 @@ begin
         v_count := v_count + sql%rowcount;
     end loop;
     dbms_output.put_line('Registros eliminados en RECURSO: ' || v_count);
+
+    dbms_output.put_line('Registros insertados en HISTORICO_RECURSO_STATUS: ' || v_count_historico);
 end;
 /
 
