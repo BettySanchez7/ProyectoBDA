@@ -21,13 +21,13 @@ declare
       (dbms_random.string('l',8)|| substr(email, instr(email,'@',1), length(email))) as email, 
       semestre, dbms_random.string('l',8) as username, 
       password, con_prestamo, con_prestamo_vencido, foto
-    from usuario sample(60) where rownum <= 50;
+    from usuario sample(60) where rownum <= 2000;
 
   cursor cur_update is
     select usuario_id, (dbms_random.string('l',8)|| substr(email, instr(email,'@',1), length(email))) as email, 
       dbms_random.string('l',8) as password, 
       round(dbms_random.value(0,1)) as con_prestamo, round(dbms_random.value(0,1)) as con_prestamo_vencido 
-    from usuario sample(60) where rownum <= 50;
+    from usuario sample(60) where rownum <= 200;
 
 begin
   -- INSERT
@@ -58,11 +58,11 @@ declare
   v_count number;
   cursor cur_insert is
     select prestamo_seq.nextval as prestamo_id, usuario_id, sysdate as fecha_prestamo, sysdate + 30 as vigencia
-    from prestamo sample(60) where rownum <= 50;
+    from prestamo sample(60) where rownum <= 2000;
 
   cursor cur_update is
     select prestamo_id, usuario_id, sysdate as fecha_entrega, trunc(dbms_random.value(1,1000),2) as importe_multa
-    from prestamo sample(60) where rownum <= 50;
+    from prestamo sample(60) where rownum <= 200;
 
   cursor cur_delete is
     select prestamo_id, usuario_id from prestamo sample(60) where rownum <= 50;
