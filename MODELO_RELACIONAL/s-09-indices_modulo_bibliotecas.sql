@@ -9,21 +9,21 @@
 connect mosaproy_bibliotecas/mosaproy_bibliotecas
 
 
-create index biblioteca_folio_uk 
+create unique index biblioteca_folio_uk 
     on biblioteca(folio_uk)
 tablespace indx_tbs;
 
-create index usuario_matricula_nombre_ux 
+create unique index usuario_matricula_nombre_uk 
     on usuario(matricula, nombre)
 tablespace indx_tbs;
 
 
 --INDICES DE LLAVES FORANEAS
-create index area_biblioteca_id_ix 
+create index area_biblioteca_biblioteca_id_ix 
     on area_biblioteca(biblioteca_id) 
 tablespace indx_tbs; 
 
-create index area_area_id_ix 
+create index area_biblioteca_area_id_ix 
     on area_biblioteca(area_id) 
 tablespace indx_tbs;
 

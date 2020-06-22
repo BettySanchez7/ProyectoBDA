@@ -40,7 +40,7 @@ declare
             tipo_recurso, area_id, recurso_status_id, 
             biblioteca_id 
         from recurso sample(60) 
-        where rownum <= 50 
+        where rownum <= 500 
         and recurso_nuevo_id is null;
     
     cursor cur_update is
@@ -49,11 +49,11 @@ declare
         where rownum <= 50 
         and recurso_nuevo_id is null;
 
-    cursor cur_delete is 
-        select recurso_id, tipo_recurso 
-        from recurso sample(60) 
-        where rownum <= 50 
-        and recurso_nuevo_id is null;
+    --cursor cur_delete is 
+        --select recurso_id, tipo_recurso 
+        --from recurso sample(60) 
+        --where rownum <= 50 
+        --and recurso_nuevo_id is null;
 
 
 begin

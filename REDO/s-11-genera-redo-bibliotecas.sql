@@ -35,7 +35,7 @@ begin
     for r in cur_insert loop
       insert into usuario(usuario_id, nombre, ap_paterno, ap_materno, matricula, email, semestre, username, password, con_prestamo, con_prestamo_vencido, foto)
       values(r.usuario_id, r.nombre, r.ap_paterno, r.ap_materno, r.matricula, r.email, r.semestre, r.username, r.password, r.con_prestamo, r.con_prestamo_vencido, r.foto);
-      v_count := v_count + sql%rowcount;
+      v_count := v_count + 1;
     end loop;
     dbms_output.put_line('Registros insertados en USUARIO: ' || v_count);
 
@@ -44,7 +44,7 @@ begin
     for r in cur_update loop
       update usuario set email = r.email, password = r.password, con_prestamo = r.con_prestamo, con_prestamo_vencido = r.con_prestamo_vencido
       where usuario_id = r.usuario_id;
-      v_count := v_count + sql%rowcount;
+      v_count := v_count + 1;
     end loop;
     dbms_output.put_line('Registros modificados en USUARIO: ' || v_count);
 
@@ -82,7 +82,7 @@ begin
   for r in cur_update loop
     update prestamo set fecha_entrega = r.fecha_entrega, importe_multa = r.importe_multa
     where prestamo_id = r.prestamo_id and usuario_id = r.usuario_id;
-    v_count := v_count + sql%rowcount;
+    v_count := v_count + 1;
   end loop;
   dbms_output.put_line('Registros modificados en PRESTAMO: ' || v_count);
 
