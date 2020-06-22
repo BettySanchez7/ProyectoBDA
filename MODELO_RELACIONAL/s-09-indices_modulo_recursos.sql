@@ -8,7 +8,7 @@
 
 connect mosaproy_recursos/mosaproy_recursos
 
-create unique index recurso_titulo_uk 
+create index recurso_titulo_ix 
     on recurso(lower(titulo))
 tablespace indx_tbs;
 
