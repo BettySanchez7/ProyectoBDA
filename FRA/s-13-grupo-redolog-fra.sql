@@ -14,7 +14,7 @@
 !mkdir /u01/app/oracle/oradata/MOSAproy/disk_3/fast-reco-area/disk_b
 !mkdir /u01/app/oracle/oradata/MOSAproy/disk_3/fast-reco-area/disk_c
 
-shutdown;
+shutdown immediate;
 --COPIANDO LOG FILES A SU NUEVA UBICACION
 !mv /u01/app/oracle/oradata/MOSAproy/disk_1/redo03a.log /u01/app/oracle/oradata/MOSAproy/disk_3/fast-reco-area/disk_a/redo03a.log
 !mv /u01/app/oracle/oradata/MOSAproy/disk_2/redo03b.log /u01/app/oracle/oradata/MOSAproy/disk_3/fast-reco-area/disk_b/redo03b.log
@@ -30,7 +30,7 @@ rename file
 to
 '/u01/app/oracle/oradata/MOSAproy/disk_3/fast-reco-area/disk_a/redo03a.log',
 '/u01/app/oracle/oradata/MOSAproy/disk_3/fast-reco-area/disk_b/redo03b.log',
-'/u01/app/oracle/oradata/MOSAproy/disk_3/fast-reco-area/disk_c/redo03c.log',
+'/u01/app/oracle/oradata/MOSAproy/disk_3/fast-reco-area/disk_c/redo03c.log';
 
 alter database open;
 
