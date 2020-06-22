@@ -193,7 +193,7 @@ declare
   v_actualizar number;
 begin
   v_count := 0;
-  v_insertar := round(dbms_random.value(500,1000));
+  v_insertar := 1000--round(dbms_random.value(500,1000));
   -- INSERT
   for r in 1..v_insertar loop
       select palabra_clave_id into v_palabra_clave_id
@@ -281,7 +281,7 @@ declare
 
 begin
   v_count := 0;
-  v_insertar := round(dbms_random.value(500,1000));
+  v_insertar := 1000--round(dbms_random.value(500,1000));
   -- INSERT
   for r in 1..v_insertar loop
       select prestamo_id, usuario_id into v_prestamo_id, v_usuario_id
