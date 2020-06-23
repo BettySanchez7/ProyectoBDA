@@ -6,6 +6,7 @@
 --@Descripción: 
 --         CARGA INICIAL BIBLIOTECA
 
+connect mosaproy_bibliotecas/mosaproy_bibliotecas
 whenever sqlerror exit rollback
 set define off
 Prompt realizando la carga de datos

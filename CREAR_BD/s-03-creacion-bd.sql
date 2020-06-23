@@ -45,4 +45,5 @@ datafile '/u01/app/oracle/oradata/MOSAproy/disk_1/usertbs01.dbf'
 size 200m reuse autoextend on maxsize unlimited;
 alter user sys identified by systemproy;
 alter user system identified by systemproy;
-
+-- Generando archivo de parámetros binario
+create spfile from pfile;

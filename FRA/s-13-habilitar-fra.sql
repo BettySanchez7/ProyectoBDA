@@ -8,13 +8,13 @@
 
 
 --CARPETA PARA FRA
-!mkdir /u01/app/oracle/oradata/MOSAproy/disk_3/fast-reco-area
+!mkdir /u01/app/oracle/oradata/MOSAproy/fast-reco-area
 
 --MODIFICAR TAMAÑO DE FRA CUANDO YA SE TENGAN LOS DATOS CALCULADOS
 alter system set db_recovery_file_dest_size=1700m scope=both;
 
 --ruta destino de la FRA
-alter system set db_recovery_file_dest='/u01/app/oracle/oradata/MOSAproy/disk_3/fast-reco-area' scope=both;
+alter system set db_recovery_file_dest='/u01/app/oracle/oradata/MOSAproy/fast-reco-area' scope=both;
 
 
 --Periodo de retención de un día

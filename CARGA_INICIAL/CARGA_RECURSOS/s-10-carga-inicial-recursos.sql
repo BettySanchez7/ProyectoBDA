@@ -5,6 +5,8 @@
 --@Fecha de creación: 12 de junio de 2020
 --@Descripción: 
 --         CARGA INICIAL RECURSOS
+
+connect mosaproy_recursos/mosaproy_recursos
 whenever sqlerror exit rollback
 set define off
 Prompt realizando la carga de datos
