@@ -23,7 +23,7 @@ alter system set log_archive_dest_1='LOCATION=/u01/app/oracle/oradata/MOSAproy/a
 
 alter system set log_archive_dest_2='LOCATION=/u01/app/oracle/oradata/MOSAproy/archivelogs/disk_2' scope=spfile;
 
-alter system set log_archive_format=arch_mosaproy_%t_%s_%r.arc
+alter system set log_archive_format='arch_mosaproy_%t_%s_%r.arc' scope=spfile;
 
 alter system set log_archive_min_succeed_dest=1;
 
