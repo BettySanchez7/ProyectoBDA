@@ -3,7 +3,7 @@
 --      Sanchez Díaz María Beatriz
 --@Fecha de creación: 18 de junio de 2020
 --@Descripción: 
---         Se habilita el modo compartido de la base de datos
+--         SE HABILITA EL MODO COMPARTIDO EN LA BASE DE DATOS
 
 -- Antes de ejecutar este script es necesario tener un spfile creado
 -- create spfile from pfile;

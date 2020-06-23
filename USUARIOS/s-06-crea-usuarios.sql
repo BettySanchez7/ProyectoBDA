@@ -3,7 +3,7 @@
 --      Sanchez Díaz María Beatriz
 --@Fecha de creación: 16 de junio de 2020
 --@Descripción: 
---         Creación de los usuarios para cada módulo
+--         CREACIÓN DE LOS USUARIOS PARA CADA MÓDULO
 
 
 create user mosaproy_bibliotecas identified by mosaproy_bibliotecas

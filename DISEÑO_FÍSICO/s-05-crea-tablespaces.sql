@@ -3,7 +3,7 @@
 --      Sanchez Díaz María Beatriz
 --@Fecha de creación: 16 de junio de 2020
 --@Descripción: 
---         Creación de la base de datos.
+--         CREACIÓN DE LOS TABLESPACES NECESARIOS PARA LOS MÓDULOS DE LA BASE DE DATOS
 
 
 create tablespace recursos_tbs

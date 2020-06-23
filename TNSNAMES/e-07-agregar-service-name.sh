@@ -1,9 +1,10 @@
+#!/bin/bash
 #@Integrantes: 
 #       Morales Téllez Carlos Gamaliel
 #       Sanchez Díaz María Beatriz
 #@Fecha de creación: 18 de junio de 2020
 #@Descripción: 
-#       Agrega el service name a tnsnames.ora
+#       AGREGA NUEVO SERVICE NAME A tnsnames.ora
 
 
 
