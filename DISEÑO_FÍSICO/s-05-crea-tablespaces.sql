@@ -25,12 +25,13 @@ create tablespace bibliotecas_tbs
 ;
 
 
-create tablespace indx_tbs logging
+create tablespace indx_tbs
     datafile '/u01/app/oracle/oradata/MOSAproy/disk_1/indx01.dbf' size 100m,
              '/u01/app/oracle/oradata/MOSAproy/disk_2/indx02.dbf' size 100m,
              '/u01/app/oracle/oradata/MOSAproy/disk_3/indx03.dbf' size 100m
     autoextend on next 1280k maxsize unlimited
-    extent management local
+    extent management local autoallocate
+    segment space management auto
 ;
 
 create tablespace lobs_tbs
