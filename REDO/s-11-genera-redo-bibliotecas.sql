@@ -5,9 +5,10 @@
 --@Fecha de creación: 18 de junio de 2020
 --@Descripción: 
 --         SIMULACIÓN DE UN DÍA DE TRABAJO DE LA BASE DE DATOS EN EL MÓDULO DE BIBLIOTECAS
+
+connect mosaproy_bibliotecas/mosaproy_bibliotecas
 set serveroutput on;
 whenever sqlerror exit rollback
-
 
 ---------------------------------------------------
 ---- Redo para la tabla USUARIO -------------------
